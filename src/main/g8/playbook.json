@@ -22,9 +22,9 @@
           "s3://cross-batch-test/jars/sparkexample-0.1.0.jar",
 
           "--input",
-          "s3://cross-batch-test/enriched-archive/run=2017-03-03-05-51-55/",
+          "s3n://cross-batch-test/r90/archive/enriched/run=2017-07-18-14-18-17/",
           "--output",
-          "s3://cross-batch-test/spark-example-output"
+          "s3n://cross-batch-test/spark-example-output"
         ]
       }
     ]

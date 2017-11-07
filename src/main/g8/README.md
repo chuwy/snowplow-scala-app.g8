@@ -2,15 +2,14 @@
 
 ## Quickstart
 
-Assuming git, **[Vagrant][vagrant-install]** and **[VirtualBox][virtualbox-install]** installed:
+1. Export AWS credentials or edit cluster.json and playbook.json
+2. `./launch.sh`
+3. Write down EMR Cluster ID
+4. Edit project
+5. Edit playbook to point Job to your data
+5. Edit `launch.sh` to comment first steps and run playbook. Launch it!
 
-```bash
-host\$ git clone https://github.com/snowplow/$name;format="lower,word"$.git
-host\$ cd $name;format="lower,word"$
-host\$ vagrant up && vagrant ssh
-guest\$ cd /vagrant
-guest\$ sbt test
-```
+Don't forget to shut-down the cluster!
 
 ## Copyright and License
 
