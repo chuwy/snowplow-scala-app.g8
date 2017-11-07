@@ -13,7 +13,7 @@
 
 package $organization$.$name;format="lower,word"$
 
-import java.io.File
+import org.apache.spark.{SparkConf, SparkContext}
 
 object Main {
 
@@ -22,26 +22,24 @@ object Main {
    * Created solely for private `rawCliConfig` value and can contain
    * incorrect state that should be handled by `transform` function
    */
-  private case class CliConfig(value: Int, input: File, verbose: Boolean)
+  private case class CliConfig(input: String, output: String)
 
   /**
    * Starting raw value, required by `parser`
    */
-  private val rawCliConfig = CliConfig(0, new File("."), false)
+  private val rawCliConfig = CliConfig("", "")
 
   /**
    * End application config parsed from CLI. Unlike `CliConfig`
    */
-  case class AppConfig(value: Int, input: File, verbose: Boolean)
+  case class AppConfig(input: String, output: String)
 
 
   /**
    * Check that raw config contains valid stat
    */
   def transform(raw: CliConfig): Either[String, AppConfig] = 
-    if (raw.value < 0) Left("Value cannot be less than 0")
-    else if (!raw.input.exists) Left(s"File [\${raw.input}] does not exist")
-    else Right(AppConfig(raw.value, raw.input, raw.verbose))
+    AppConfig(raw.input, raw.outout)
 
   /**
    * Scopt parser providing necessary argument annotations and basic validation
@@ -52,12 +50,12 @@ object Main {
     opt[Int]('v', "value").required().action( (x, c) =>
       c.copy(value = x) ).text("Some value greater than zero")
   
-    opt[File]('i', "input").required().valueName("<file>").
+    opt[File]('i', "input").required().
       action( (x, c) => c.copy(input = x) ).
       text("Input path")
   
-    opt[Unit]("verbose").action( (_, c) =>
-      c.copy(verbose = true) ).text("Verbose output")
+    opt[Unit]('o', "output").required().
+      action( (x, c) => c.copy(output = x) ).text("Input")
   
     help("help").text("prints this usage text")
   }
