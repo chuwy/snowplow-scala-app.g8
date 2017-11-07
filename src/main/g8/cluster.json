@@ -39,15 +39,27 @@
     "bootstrapActionConfigs": [ ],
     "configurations": [
       {
-        "classification": "core-site",
-        "properties": {
-          "Io.file.buffer.size": "65536"
+        "classification":"core-site",
+        "properties":{
+          "Io.file.buffer.size":"65536"
         }
       },
       {
-        "classification": "mapred-site",
-        "properties": {
-          "Mapreduce.user.classpath.first": "true"
+        "classification":"mapred-site",
+        "properties":{
+          "Mapreduce.user.classpath.first":"true"
+        }
+      },
+      {
+        "classification":"yarn-site",
+        "properties":{
+          "yarn.resourcemanager.am.max-attempts":"1"
+        }
+      },
+      {
+        "classification":"spark",
+        "properties":{
+          "maximizeResourceAllocation":"true"
         }
       }
     ],

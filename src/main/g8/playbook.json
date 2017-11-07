@@ -8,11 +8,19 @@
     },
     "steps": [
       {
-        "type": "CUSTOM_JAR",
-        "name": "Transform",
-        "actionOnFailure": "CANCEL_AND_WAIT",
-        "jar": "s3://cross-batch-test/jars/sparkexample-0.1.0-rc1.jar",
-        "arguments": [
+        "type":"CUSTOM_JAR",
+        "name":"Snowflake Transformer",
+        "actionOnFailure":"CANCEL_AND_WAIT",
+        "jar":"command-runner.jar",
+        "arguments":[
+          "spark-submit",
+          "--deploy-mode",
+          "cluster",
+          "--class",
+          "com.snowplowanalytics.sparkexample.Main",
+
+          "s3://cross-batch-test/jars/sparkexample-0.1.0.jar",
+
           "--input",
           "s3://cross-batch-test/enriched-archive/run=2017-03-03-05-51-55/",
           "--output",

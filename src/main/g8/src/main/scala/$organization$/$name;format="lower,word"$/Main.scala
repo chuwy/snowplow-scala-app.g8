@@ -15,6 +15,8 @@ package $organization$.$name;format="lower,word"$
 
 import org.apache.spark.{SparkConf, SparkContext}
 
+import com.snowplowanalytics.snowplow.analytics.scalasdk.json.EventTransformer
+
 object Main {
 
   /**
@@ -39,33 +41,40 @@ object Main {
    * Check that raw config contains valid stat
    */
   def transform(raw: CliConfig): Either[String, AppConfig] = 
-    AppConfig(raw.input, raw.outout)
+    Right(AppConfig(raw.input, raw.output))
 
   /**
    * Scopt parser providing necessary argument annotations and basic validation
    */
   private val parser = new scopt.OptionParser[CliConfig](generated.ProjectMetadata.name) {
     head(generated.ProjectMetadata.name, generated.ProjectMetadata.version)
-  
-    opt[Int]('v', "value").required().action( (x, c) =>
-      c.copy(value = x) ).text("Some value greater than zero")
-  
-    opt[File]('i', "input").required().
+
+    opt[String]('i', "input").required().
       action( (x, c) => c.copy(input = x) ).
       text("Input path")
-  
-    opt[Unit]('o', "output").required().
+
+    opt[String]('o', "output").required().
       action( (x, c) => c.copy(output = x) ).text("Input")
-  
+
     help("help").text("prints this usage text")
   }
 
 
   def main(args: Array[String]): Unit = {
-    println("Hello $organization$.$name$!")
+    println("Hello from Spark Example!")
 
     parser.parse(args, rawCliConfig).map(transform) match {
-      case Some(Right(appConfig)) => println(s"Success: " + appConfig.toString)
+      case Some(Right(appConfig)) =>
+
+        val config = new SparkConf()
+          .setAppName("spark-example")
+          .setIfMissing("spark.master", "local[*]")
+
+        val sc = new SparkContext(config)
+        // Always assuming correct enriched TSV input
+        val output = sc.textFile(appConfig.input).map(EventTransformer.transform).map(x => x.right.toOption.get)
+        output.saveAsTextFile(appConfig.output)
+
       case Some(Left(error)) => 
         // Failed transformation
         println(error)
