@@ -1,0 +1,24 @@
+{
+  "schema": "iglu:com.snowplowanalytics.dataflowrunner/PlaybookConfig/avro/1-0-1",
+  "data": {
+    "region": "us-east-1",
+    "credentials": {
+      "accessKeyId": "env",
+      "secretAccessKey": "env"
+    },
+    "steps": [
+      {
+        "type": "CUSTOM_JAR",
+        "name": "Transform",
+        "actionOnFailure": "CANCEL_AND_WAIT",
+        "jar": "s3://cross-batch-test/jars/sparkexample-0.1.0-rc1.jar",
+        "arguments": [
+          "--input",
+          "s3://cross-batch-test/enriched-archive/run=2017-03-03-05-51-55/",
+          "--output",
+          "s3://cross-batch-test/spark-example-output"
+        ]
+      }
+    ]
+  }
+}
