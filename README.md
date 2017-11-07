@@ -1,5 +1,7 @@
 # snowplow-scala-app.g8
 
+Spark-specialized fork.
+
 snowplow-scala-app.g8 is [SBT template][sbt-template] used by [Snowplow][snowplow] Engineering Team as basis for modern open-source Scala projects.
 
 This is a template intended for executable applications, that will be published on Bintray or Amazon S3.
@@ -10,7 +12,7 @@ For libraries supposed to be published on Maven use [snowplow-scala-lib.g8][snow
 Assuming SBT, git, **[Vagrant][vagrant-install]** and **[VirtualBox][virtualbox-install]** installed:
 
 ```bash
-host$ sbt new snowplow/snowplow-scala-app.g8
+host$ sbt new chuwy/snowplow-scala-app.g8
 ```
 
 Quickstart with new project:
