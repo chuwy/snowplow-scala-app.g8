@@ -15,22 +15,29 @@ import sbt._
 object Dependencies {
 
   object V {
+    // Spark
+    val hadoop           = "2.7.3"
+    val spark            = "2.2.0"
     // Scala
     val scopt            = "3.6.0"
     val scalaz7          = "7.0.9"
     val json4sJackson    = "3.2.11"
+    val analyticsSdk     = "0.2.0"
     // Scala (test only)
     val specs2           = "2.3.13"
     val scalazSpecs2     = "0.2"
     val scalaCheck       = "1.12.2"
   }
 
+  // Spark
+  val hadoop           = "org.apache.hadoop"          % "hadoop-aws"                    % V.hadoop          % "provided"
+  val spark            = "org.apache.spark"           %% "spark-core"                   % V.spark           % "provided"
+
   // Scala
-  val scopt            = "com.github.scopt"           %% "scopt"                     % V.scopt
-  val scalaz7          = "org.scalaz"                 %% "scalaz-core"               % V.scalaz7
-  val json4sJackson    = "org.json4s"                 %% "json4s-jackson"            % V.json4sJackson
+  val scopt            = "com.github.scopt"           %% "scopt"                        % V.scopt
+  val json4sJackson    = "org.json4s"                 %% "json4s-jackson"               % V.json4sJackson
+  val analyticsSdk     = "com.snowplowanalytics"      %% "snowplow-scala-analytics-sdk" % V.analyticsSdk
   // Scala (test only)
   val specs2           = "org.specs2"                 %% "specs2"                    % V.specs2         % "test"
-  val scalazSpecs2     = "org.typelevel"              %% "scalaz-specs2"             % V.scalazSpecs2   % "test"
   val scalaCheck       = "org.scalacheck"             %% "scalacheck"                % V.scalaCheck     % "test"
 }

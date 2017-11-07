@@ -14,12 +14,13 @@ lazy val root = project.in(file("."))
       "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
     ),
     libraryDependencies ++= Seq(
+      Dependencies.spark,
+      Dependencies.hadoop,
+
       Dependencies.scopt,
-      Dependencies.scalaz7,
-      Dependencies.json4sJackson,
+      Dependencies.analyticsSdk,
 
       Dependencies.specs2,
-      Dependencies.scalazSpecs2,
       Dependencies.scalaCheck
     )
   )
