@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Snowplow Analytics Ltd. All rights reserved.
+ * Copyright (c) 2018 Snowplow Analytics Ltd. All rights reserved.
  *
  * This program is licensed to you under the Apache License Version 2.0,
  * and you may not use this file except in compliance with the Apache License Version 2.0.
@@ -24,9 +24,8 @@ object Dependencies {
     val json4sJackson    = "3.2.11"
     val analyticsSdk     = "0.2.0"
     // Scala (test only)
-    val specs2           = "2.3.13"
-    val scalazSpecs2     = "0.2"
-    val scalaCheck       = "1.12.2"
+    val specs2           = "4.3.2"
+    val scalaCheck       = "1.14.0"
   }
 
   // Spark

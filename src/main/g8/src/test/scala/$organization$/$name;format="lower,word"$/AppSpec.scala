@@ -15,7 +15,7 @@ package $organization$.$name;format="lower,word"$
 
 import org.specs2.Specification
 
-class CheckSpec extends Specification { def is = s2"""
+class AppSpec extends Specification { def is = s2"""
   One plus one test \$e1
   """
 
