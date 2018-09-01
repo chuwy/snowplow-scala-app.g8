@@ -4,7 +4,8 @@ lazy val root = project.in(file("."))
     version := "$version$",
     organization := "com.snowplowanalytics",
     scalaVersion := "2.11.11",
-    initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._"
+    initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._",
+    licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
   )
   .settings(BuildSettings.assemblySettings)
   .settings(BuildSettings.buildSettings)
