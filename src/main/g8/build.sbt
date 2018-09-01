@@ -3,7 +3,7 @@ lazy val root = project.in(file("."))
     name := "$name;format="lower,word"$",
     version := "$version$",
     organization := "com.snowplowanalytics",
-    scalaVersion := "2.11.11",
+    scalaVersion := "2.12.6",
     initialCommands := "import com.snowplowanalytics.$name;format="lower,word"$._",
     licenses += ("Apache-2.0", url("https://www.apache.org/licenses/LICENSE-2.0"))
   )
@@ -15,10 +15,7 @@ lazy val root = project.in(file("."))
       "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
     ),
     libraryDependencies ++= Seq(
-      Dependencies.spark,
-      Dependencies.hadoop,
-
-      Dependencies.scopt,
+      Dependencies.decline,
       Dependencies.analyticsSdk,
 
       Dependencies.specs2,

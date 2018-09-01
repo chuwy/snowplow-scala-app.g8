@@ -15,28 +15,21 @@ import sbt._
 object Dependencies {
 
   object V {
-    // Spark
-    val hadoop           = "2.7.3"
-    val spark            = "2.2.0"
     // Scala
-    val scopt            = "3.6.0"
-    val scalaz7          = "7.0.9"
-    val json4sJackson    = "3.2.11"
-    val analyticsSdk     = "0.2.0"
+    val decline       = "0.5.0"
+    val scalaz7       = "7.0.9"
+    val json4sJackson = "3.2.11"
+    val analyticsSdk  = "0.3.2"
     // Scala (test only)
-    val specs2           = "4.3.2"
-    val scalaCheck       = "1.14.0"
+    val specs2        = "4.3.2"
+    val scalaCheck    = "1.14.0"
   }
 
-  // Spark
-  val hadoop           = "org.apache.hadoop"          % "hadoop-aws"                    % V.hadoop          % "provided"
-  val spark            = "org.apache.spark"           %% "spark-core"                   % V.spark           % "provided"
-
   // Scala
-  val scopt            = "com.github.scopt"           %% "scopt"                        % V.scopt
-  val json4sJackson    = "org.json4s"                 %% "json4s-jackson"               % V.json4sJackson
-  val analyticsSdk     = "com.snowplowanalytics"      %% "snowplow-scala-analytics-sdk" % V.analyticsSdk
+  val decline       = "com.monovore"               %% "decline"                      % V.decline
+  val json4sJackson = "org.json4s"                 %% "json4s-jackson"               % V.json4sJackson
+  val analyticsSdk  = "com.snowplowanalytics"      %% "snowplow-scala-analytics-sdk" % V.analyticsSdk
   // Scala (test only)
-  val specs2           = "org.specs2"                 %% "specs2"                    % V.specs2         % "test"
-  val scalaCheck       = "org.scalacheck"             %% "scalacheck"                % V.scalaCheck     % "test"
+  val specs2        = "org.specs2"                 %% "specs2"                    % V.specs2         % "test"
+  val scalaCheck    = "org.scalacheck"             %% "scalacheck"                % V.scalaCheck     % "test"
 }
