@@ -30,6 +30,6 @@ object Dependencies {
   val json4sJackson = "org.json4s"                 %% "json4s-jackson"               % V.json4sJackson
   val analyticsSdk  = "com.snowplowanalytics"      %% "snowplow-scala-analytics-sdk" % V.analyticsSdk
   // Scala (test only)
-  val specs2        = "org.specs2"                 %% "specs2"                    % V.specs2         % "test"
+  val specs2        = "org.specs2"                 %% "specs2-core"               % V.specs2         % "test"
   val scalaCheck    = "org.scalacheck"             %% "scalacheck"                % V.scalaCheck     % "test"
 }
