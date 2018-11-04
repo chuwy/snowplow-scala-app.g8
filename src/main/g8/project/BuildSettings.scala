@@ -19,7 +19,6 @@ import Keys._
 import sbtassembly._
 import sbtassembly.AssemblyKeys._
 
-
 /**
  * Common settings-patterns for Snowplow apps and libaries.
  * To enable any of these you need to explicitly add Settings value to build.sbt
@@ -68,35 +67,7 @@ object BuildSettings {
 
   // sbt-assembly settings
   lazy val assemblySettings = Seq(
-    assemblyJarName in assembly := { moduleName.value + "-" + version.value + ".jar" },
-
-    assemblyShadeRules in assembly := Seq(
-      ShadeRule.rename(
-        "com.amazonaws.**" -> "shadeaws.@1",
-        "org.apache.http.**" -> "shadehttp.@1"
-      ).inAll
-    ),
-
-    assemblyExcludedJars in assembly := {
-      val cp = (fullClasspath in assembly).value
-      val excludes = Set(
-        "jasper-compiler-5.5.12.jar",
-        "hadoop-core-1.1.2.jar", // Provided by Amazon EMR. Delete this line if you're not on EMR
-        "hadoop-tools-1.1.2.jar" // "
-      )
-      cp.filter { jar => excludes(jar.data.getName) }
-    },
-
-    assemblyMergeStrategy in assembly := {
-      case "project.clj" => MergeStrategy.discard // Leiningen build files
-      case x if x.startsWith("META-INF") => MergeStrategy.discard
-      case x if x.endsWith(".html") => MergeStrategy.discard
-      case x if x.endsWith("public-suffix-list.txt") => MergeStrategy.last
-      case PathList("org", "apache", "spark", "unused", tail@_*) => MergeStrategy.first
-      case x =>
-        val oldStrategy = (assemblyMergeStrategy in assembly).value
-        oldStrategy(x)
-    }
+    assemblyJarName in assembly := { moduleName.value + "-" + version.value + ".jar" }
   )
 
   lazy val helpersSettings = Seq[Setting[_]](

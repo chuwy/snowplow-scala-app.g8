@@ -21,7 +21,7 @@ object Dependencies {
     val json4sJackson = "3.2.11"
     val analyticsSdk  = "0.3.2"
     // Scala (test only)
-    val specs2        = "4.3.2"
+    val specs2        = "4.3.5"
     val scalaCheck    = "1.14.0"
   }
 
